@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>داریوش - دوران ساسانی</title>
+<style>
+body{margin:0;background:#24312b;color:white;font-family:tahoma;text-align:center}
+header{padding:12px;background:#17221e}
+h2{color:#e5bd72}
+#scene{height:340px;position:relative;overflow:hidden;background:linear-gradient(#d7c28a 0 55%,#9a8050 55%)}
+.mountain{position:absolute;top:60px;width:100%;height:100px;background:#858365;clip-path:polygon(0 100%,20% 0,40% 100%,65% 10%,100% 100%)}
+.wall{position:absolute;bottom:80px;width:100%;height:90px;background:#b99b6c;border:4px solid #705538}
+.house{position:absolute;bottom:170px;width:90px;height:70px;background:#d7bd8b;border:4px solid #765e3d}
+#hero{position:absolute;bottom:15px;left:48%;font-size:55px}
+button{background:#43564a;color:white;border:1px solid #c29c56;border-radius:9px;padding:13px;margin:5px;font-size:15px}
+#box{padding:12px;background:#17221e;margin:10px;border-radius:10px}
+</style>
+</head>
+<body>
+<header>
+<h2>داریوش | شاهنشاهی ساسانی</h2>
+❤️ <span id="hp">100</span>
+🪙 <span id="coin">35</span>
+⭐ جوان‌سرباز
+</header>
+
+<div id="scene">
+<div class="mountain"></div>
+<div class="wall"></div>
+<div class="house" style="left:10%"></div>
+<div class="house" style="right:10%"></div>
+<div id="hero">🛡️</div>
+</div>
+
+<div>
+<button onclick="move(-20)">◀ حرکت</button>
+<button onclick="move(20)">حرکت ▶</button>
+</div>
+
+<div id="box">
+<p id="message">به بیشاپور خوش آمدی، داریوش!</p>
+<button onclick="talk()">گفت‌وگو با فرمانده</button>
+<button onclick="mission()">مأموریت</button>
+<button onclick="shop()">تجهیزات</button>
+<button onclick="travel()">سفر</button>
+</div>
+
+<script>
+let x=48,coin=35,done=false;
+function move(n){
+x=Math.max(2,Math.min(92,x+n/5));
+document.getElementById("hero").style.left=x+"%";
+}
+function msg(t){document.getElementById("message").innerText=t}
+function talk(){
+msg("فرمانده: داریوش! آماده‌ای به سپاه شاپور دوم بپیوندی؟");
+}
+function mission(){
+if(!done){
+done=true;coin+=25;
+document.getElementById("coin").innerText=coin;
+msg("مأموریت انجام شد! ۲۵ سکه پاداش گرفتی.");
+}else msg("مأموریت اول را قبلاً انجام داده‌ای.");
+}
+function shop(){
+msg("فروشگاه: سپر چوبی ۲۰ سکه.");
+}
+function travel(){
+msg("به شهر گور سفر کردی!");
+}
+</script>
+</body>
+</html>
